@@ -9,7 +9,12 @@ function renderCategoryItem(itemData) {
 }
 
 function CategoriesScreen() {
-    return (<FlatList data={CATEGORIES} keyExtractor={(item) => item.id} renderItem={renderCategoryItem} />);
+    return (<FlatList 
+    data={CATEGORIES} 
+    keyExtractor={(item) => item.id} 
+    renderItem={renderCategoryItem} 
+    numColumns={ 2}
+    />);
 }
 export default CategoriesScreen;
 
@@ -17,6 +22,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+       
     }
 });
