@@ -1,10 +1,11 @@
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
-function CategoriesGridTile({ title, color }) {
+function CategoriesGridTile({ title, color, onPress }) {
     return (
         <View style={styles.gridItem}>
-            <Pressable android_ripple={{color:'#ccc'}} style={({pressed})=>[styles.button,pressed && styles.buttonPressed]}>
-                <View style={[styles.innerContainer,{backgroundColor:color}]}>
+            <Pressable android_ripple={{ color: '#ccc' }} style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+                onPress={onPress}>
+                <View style={[styles.innerContainer, { backgroundColor: color }]}>
                     <Text style={styles.title}>{title}</Text>
                 </View>
             </Pressable>
@@ -25,25 +26,25 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 10,
         backgroundColor: 'white',
-        overflow: Platform.OS==='android' ? 'hidden' : 'visible',
+        overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
     },
-    button:{
-        flex:1,
-    },
-    buttonPressed:{
-        opacity:0.5,
-    },
-    innerContainer:{
+    button: {
         flex: 1,
-        padding:16,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius: 10,
-        
     },
-    title:{
-        fontWeight:'bold',
-        fontSize:18,
+    buttonPressed: {
+        opacity: 0.5,
+    },
+    innerContainer: {
+        flex: 1,
+        padding: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 18,
     }
 
 });
