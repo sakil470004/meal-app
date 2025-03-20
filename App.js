@@ -4,9 +4,9 @@ import { StatusBar } from "react-native-web";
 
 export default function App() {
   return (
- <>
-  <StatusBar style="auto" />
-  <CategoriesScreen/>
- </>
+    <>
+      <StatusBar style="auto" />
+      <CategoriesScreen />
+    </>
   );
 }
