@@ -4,14 +4,14 @@ import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native
 function MealItem({ title, imageUrl, duration, complexity, affordability ,id}) {
     // console.log(props);
     const navigation = useNavigation();
-    const onPress = (id) => {
+    const onPress = () => {
         navigation.navigate('MealDetails', { mealId: id });
     }
     return (
         <View style={styles.mealItem}>
             <Pressable android_ripple={{ color: '#ccc' }}
             style={({ pressed }) => ( pressed ? styles.buttonPressed:null)}
-            onPress={()=>onPress(id)}
+            onPress={onPress}
             >
                 <View style={styles.innerContainer}>
                     <View>
