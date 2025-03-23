@@ -21,7 +21,6 @@ function MealsOverviewScreen({ route, navigation }) {
             duration:itemData.item.duration,
             complexity:itemData.item.complexity,
             affordability:itemData.item.affordability,
-            onPress:(id)=>navigation.navigate('MealDetails',{mealId:id}),
             id:itemData.item.id,
         }
 
