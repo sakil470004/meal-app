@@ -19,6 +19,7 @@ function CategoriesScreen({ navigation }) {
         keyExtractor={(item) => item.id}
         renderItem={renderCategoryItem}
         numColumns={2}
+        // style={styles.screen}
     />);
 }
 export default CategoriesScreen;
