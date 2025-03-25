@@ -11,15 +11,14 @@ function MealDetailsScreen({ route, navigation }) {
 
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
     const { imageUrl, title, duration, complexity, affordability, ingredients, steps } = selectedMeal;
-    console.log(mealId)
+    
     const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
     function changeFavStatusHandler() {
-        console.log(mealIsFavorite,favoriteMealsCtx.ids)
-       if(mealIsFavorite){
-        favoriteMealsCtx.removeFavorite(mealId);
-       }else{
-        favoriteMealsCtx.addFavorite(mealId);
-       }
+        if (mealIsFavorite) {
+            favoriteMealsCtx.removeFavorite(mealId);
+        } else {
+            favoriteMealsCtx.addFavorite(mealId);
+        }
     }
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -27,10 +26,11 @@ function MealDetailsScreen({ route, navigation }) {
                 <IconButton onClick={changeFavStatusHandler}
                     icon={mealIsFavorite ? 'star' : 'star-outline'}
                     color='white'
-               />
+                />
             )
         })
-    }, [navigation,changeFavStatusHandler])
+    }, [navigation, changeFavStatusHandler]);
+
     return (
         <ScrollView style={styles.mainContainer}>
             <View style={styles.screen}>
