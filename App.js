@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import { StatusBar } from "react-native-web";
 import { NavigationContainer } from "@react-navigation/native";
@@ -39,7 +39,8 @@ export default function App() {
             // }
             // }
           />
-          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
+          <Stack.Screen name="MealDetails" component={MealDetailsScreen} 
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
