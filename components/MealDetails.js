@@ -14,13 +14,17 @@ const styles = StyleSheet.create({
     details: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        padding: 8,
+        justifyContent: 'space-between',
+        padding: 10,
+        backgroundColor:'skyblue',
+        marginVertical: 8,
+        borderRadius: 10,
     },
     
     detailsITem: {
         fontSize: 12,
         marginHorizontal: 4,
+        color: 'white',
 
     }
 })

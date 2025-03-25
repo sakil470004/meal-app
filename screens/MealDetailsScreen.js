@@ -22,7 +22,7 @@ function MealDetailsScreen({ route, navigation }) {
         <ScrollView style={styles.mainContainer}>
             <View style={styles.screen}>
             <Image source={{ uri: imageUrl }} style={styles.image} />
-            <Text>{title}</Text>
+            <Text style={styles.name}>{title}</Text>
             <MealDetails duration={duration} complexity={complexity} affordability={affordability}  />
             {/* <ScrollView style={{flex:1}}> */}
             <View style={styles.itemContainer}>
@@ -64,6 +64,12 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     }
     ,
+    name: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginVertical: 8,
+    },
     itemContainer: {
         marginVertical: 8,
     },
