@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import MealDetails from "./MealDetails";
 
-function MealItem({ title, imageUrl, duration, complexity, affordability ,id}) {
+function MealItem({ title, imageUrl, duration, complexity, affordability, id }) {
     // console.log(props);
     const navigation = useNavigation();
     const onPress = () => {
@@ -11,15 +11,18 @@ function MealItem({ title, imageUrl, duration, complexity, affordability ,id}) {
     return (
         <View style={styles.mealItem}>
             <Pressable android_ripple={{ color: '#ccc' }}
-            style={({ pressed }) => ( pressed ? styles.buttonPressed:null)}
-            onPress={onPress}
+                style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+                onPress={onPress}
             >
                 <View style={styles.innerContainer}>
                     <View>
                         <Image source={{ uri: imageUrl }} style={styles.image} />
-                        <Text style={styles.title}>{title}</Text>
                     </View>
-                  <MealDetails duration={duration} complexity={complexity} affordability={affordability}/>
+                    <View style={styles.cardInner}>
+
+                        <Text style={styles.title}>{title}</Text>
+                        <MealDetails duration={duration} complexity={complexity} affordability={affordability} />
+                    </View>
                 </View>
             </Pressable>
         </View>
@@ -29,7 +32,8 @@ export default MealItem;
 
 const styles = StyleSheet.create({
     mealItem: {
-        margin: 16,
+        margin: 8,
+        marginBottom:16,
         borderRadius: 10,
         backgroundColor: '#f5f5f5',
         elevation: 4,
@@ -52,12 +56,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 200,
     },
+    cardInner: {
+        padding: 10,
+    },
     title: {
         fontWeight: 'bold',
         fontSize: 20,
         textAlign: 'center',
         margin: 8,
     },
-  
+
 });
 
