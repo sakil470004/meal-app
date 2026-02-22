@@ -1,45 +1,163 @@
-# My Universal React Project
+# Meal App
 
-<p>
-  <!-- iOS -->
-  <a href="https://itunes.apple.com/app/apple-store/id982107779">
-    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  </a>
-  <!-- Android -->
-  <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample">
-    <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  </a>
-  <!-- Web -->
-  <a href="https://docs.expo.dev/workflow/web/">
-    <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-  </a>
-</p>
+A React Native meal recipe application built with Expo. Browse meal categories, view detailed recipes with ingredients and cooking steps, and save your favorite meals.
 
-## 🚀 How to use
+## Features
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` or `npm run start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser
+- Browse 10 meal categories (Italian, Asian, German, French, etc.)
+- View meals filtered by category
+- Detailed recipe view with:
+  - Meal image
+  - Cooking duration
+  - Complexity level (simple/challenging/hard)
+  - Affordability (affordable/pricey/luxurious)
+  - Ingredients list
+  - Step-by-step cooking instructions
+  - Dietary info (Gluten-Free, Vegan, Vegetarian, Lactose-Free)
+- Add/remove meals to favorites
+- Drawer navigation for easy access to Categories and Favorites
 
-## Running/Modifying Native Code
+## Tech Stack
 
-You can generate native iOS and Android projects from your Expo config file (**app.json**/ **app.config.js**) by runnning `npx expo prebuild`. These native projects can then be compiled and run via XCode and Android Studio.
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React Native | 0.76.3 | Core framework |
+| Expo | 52.0.16 | Development platform |
+| React Navigation | 7.x | Drawer + Stack navigation |
+| Redux Toolkit | 2.6.1 | State management (favorites) |
+| React Redux | 9.2.0 | Redux bindings |
 
-> 💡 Learn more about [native code in Expo](https://docs.expo.dev/workflow/customizing/)
+## Project Structure
 
-## Publishing
+```
+meal-app/
+├── App.js                      # Main app entry with navigation setup
+├── app.json                    # Expo configuration
+├── babel.config.js             # Babel configuration
+├── package.json                # Dependencies and scripts
+│
+├── components/
+│   ├── CategoryGridTile.js     # Category card component
+│   ├── IconButton.js           # Reusable icon button (favorite star)
+│   ├── MealDetails.js          # Meal info display (duration, complexity, etc.)
+│   └── MealsList/
+│       ├── MealItem.js         # Single meal card component
+│       └── MealsList.js        # FlatList of meals
+│
+├── data/
+│   └── dummy-data.js           # Static meal & category data (10 categories, 10 meals)
+│
+├── models/
+│   ├── category.js             # Category class model
+│   └── meal.js                 # Meal class model
+│
+├── screens/
+│   ├── CategoriesScreen.js     # Grid of meal categories
+│   ├── FavoritesScreen.js      # List of favorited meals
+│   ├── MealDetailsScreen.js    # Full recipe details with favorite toggle
+│   └── MealsOverviewScreen.js  # Meals filtered by selected category
+│
+└── store/
+    ├── context/
+    │   └── favorites-context.js  # Context API implementation (commented out)
+    └── redux/
+        ├── favorites.js          # Redux slice for favorites
+        └── store.js              # Redux store configuration
+```
 
-- Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.dev/distribution/app-stores/).
-- Deploy the website using this guide: [Web deployment](https://docs.expo.dev/distribution/publishing-websites/).
+## Navigation Flow
 
-## 📝 Notes
+```
+Drawer Navigator
+├── Categories Screen (Grid of 10 food categories)
+│   └── [Select Category] → Meals Overview Screen
+│       └── [Select Meal] → Meal Details Screen (with ⭐ favorite toggle)
+│
+└── Favorites Screen (List of saved meals)
+    └── [Select Meal] → Meal Details Screen
+```
 
-- Learn more about [Universal React](https://docs.expo.dev/).
-- See what API and components are [available in the React runtimes](https://docs.expo.dev/versions/latest/).
-- Find out more about developing apps and websites: [Guides](https://docs.expo.dev/guides/).
+## Data Models
 
-test from mobile
+**Category**
+- `id` - Unique identifier
+- `title` - Category name
+- `color` - Background color
+
+**Meal**
+- `id` - Unique identifier
+- `categoryIds` - Array of category IDs
+- `title` - Meal name
+- `affordability` - affordable | pricey | luxurious
+- `complexity` - simple | challenging | hard
+- `imageUrl` - Image URL
+- `duration` - Cooking time in minutes
+- `ingredients` - Array of ingredients
+- `steps` - Array of cooking steps
+- `isGlutenFree` - Boolean
+- `isVegan` - Boolean
+- `isVegetarian` - Boolean
+- `isLactoseFree` - Boolean
+
+## Sample Data
+
+### Categories
+Italian, Quick & Easy, Hamburgers, German, Light & Lovely, Exotic, Breakfast, Asian, French, Summer
+
+### Meals
+1. Spaghetti with Tomato Sauce (Italian, Quick & Easy)
+2. Toast Hawaii (Quick & Easy)
+3. Classic Hamburger (Hamburgers)
+4. Wiener Schnitzel (German)
+5. Salad with Smoked Salmon (Quick & Easy, Light & Lovely, Summer)
+6. Delicious Orange Mousse (Exotic, Summer)
+7. Pancakes (Breakfast)
+8. Creamy Indian Chicken Curry (Asian)
+9. Chocolate Souffle (French)
+10. Asparagus Salad with Cherry Tomatoes (Quick & Easy, Light & Lovely, Summer)
+
+## Getting Started
+
+### Prerequisites
+- Node.js
+- npm or yarn
+- Expo Go app (for mobile testing)
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+```
+
+### Running the App
+
+```bash
+# Start Expo
+npm start
+
+# Run on iOS simulator
+npm run ios
+
+# Run on Android emulator
+npm run android
+
+# Run in web browser
+npm run web
+```
+
+Scan the QR code with Expo Go app to run on your physical device.
+
+## State Management
+
+This project demonstrates **two approaches** for state management:
+
+1. **Redux Toolkit** (Currently Active) - Used for managing favorite meals
+2. **Context API** (Commented out) - Alternative implementation available in `store/context/`
+
+## Course Info
+
+This project is from **Academind's React Native Course - Section 6**
